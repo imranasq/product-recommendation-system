@@ -1,4 +1,5 @@
-from .models import User
+from dataclasses import field
+from .models import User, Profile
 from rest_framework import serializers
 
 
@@ -27,31 +28,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = [
-            'id',
-            'first_name',
-            'last_name',
-            'email',
-            'password',
-            'user_type',
-            'is_active',
-        ]
-
-    def create(self, validated_data):
-        user = super().create(validated_data)
-        user.set_password(validated_data['password'])
-        user.is_active=True
-        if validated_data["user_type"] == "Admin":
-            user.is_superuser = True
-            user.is_staff = True
-        user.save()
-        return user
-
 class PasswordChangeSerializer(serializers.Serializer):
     current_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
@@ -61,3 +37,9 @@ class PasswordChangeSerializer(serializers.Serializer):
         if not self.context['request'].user.check_password(value):
             raise serializers.ValidationError({'current_password': 'Does not match'})
         return value
+    
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = "__all__"
