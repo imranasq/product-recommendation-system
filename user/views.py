@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -6,8 +7,11 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import  Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
+
 from .utils import get_tokens_for_user
-from .serializers import RegistrationSerializer, PasswordChangeSerializer
+from .serializers import RegistrationSerializer, PasswordChangeSerializer, ProfileSerializer
+from .models import Profile
 
 
 class RegistrationView(APIView):
@@ -50,4 +54,21 @@ class ChangePasswordView(APIView):
             request.user.save()
             return Response({'details': 'Password changed successfully'}, status=status.HTTP_200_OK)
         else:
-            return Response({'details': 'New passwords does not match'}, status=status.HTTP_200_OK)
+            return Response({'details': 'New passwords does not match'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
+    
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if serializer.validated_data['user'] == self.request.user:
+            serializer.save(user=self.request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'details': 'You do not have permission to perform this!'}, status=status.HTTP_401_UNAUTHORIZED)
