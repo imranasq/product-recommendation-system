@@ -178,6 +178,9 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+WEATHER_API_KEY = env('WEATHER_API_KEY')
+
 # Add additional constants only applicable for DEBUG = True
 
 if DEBUG:
