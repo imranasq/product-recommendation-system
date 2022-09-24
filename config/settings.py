@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     # project
     'user',
+    'product',
 ]
 
 REST_FRAMEWORK = {
