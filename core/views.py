@@ -3,7 +3,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 
-
 class BaseModelViewSet(viewsets.ModelViewSet):
     update_status_serializer_class = None
     service_class = None
