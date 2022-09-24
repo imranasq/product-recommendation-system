@@ -1,9 +1,9 @@
 from core.services import BaseModelService
-from .models import WeatherCondition
+from .models import WeatherType
 
 
 class WeatherService(BaseModelService):
-    model_class = WeatherCondition
+    model_class = WeatherType
 
     def create(self, request, validated_data, **kwargs):
         pass

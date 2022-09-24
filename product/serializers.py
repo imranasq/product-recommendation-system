@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Product, Category
+from .models import Product, ProductType
 from weather.serializers import WeatherConditionSerializer
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class ProductTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = ProductType
         fields = ['id', 'name', 'is_active']
 
 
@@ -17,7 +17,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
+    category = ProductTypeSerializer(read_only=True)
     weather_condition = WeatherConditionSerializer(read_only=True)
 
     class Meta:

@@ -1,13 +1,13 @@
 from rest_framework import status
 
 from user import serializers
-from .serializers import ProductSerializer, CategorySerializer, ProductDetailSerializer, ProductStatusUpdateSerializer
+from .serializers import ProductSerializer, ProductTypeSerializer, ProductDetailSerializer, ProductStatusUpdateSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from core.views import BaseModelViewSet
 
-from .models import Product, Category
-from .services import ProductService, CategoryService
+from .models import Product, ProductType
+from .services import ProductService, ProductTypeService
 
 
 class ProductViewSet(BaseModelViewSet):
@@ -53,9 +53,9 @@ class ProductViewSet(BaseModelViewSet):
 
 
 class CategoryViewSet(BaseModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    service_class = CategoryService
+    queryset = ProductType.objects.all()
+    serializer_class = ProductTypeSerializer
+    service_class = ProductTypeService
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):

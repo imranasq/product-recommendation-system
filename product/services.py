@@ -1,11 +1,11 @@
 from itertools import product
 from core.services import BaseModelService
-from product.models import Product, Category
+from product.models import Product, ProductType
 
 
 class ProductService(BaseModelService):
     model_class = Product
 
 
-class CategoryService(BaseModelService):
-    model_class = Category
+class ProductTypeService(BaseModelService):
+    model_class = ProductType
