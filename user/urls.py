@@ -1,11 +1,12 @@
 from django.urls import path, include
-from .views import RegistrationView, LoginView, ChangePasswordView, ProfileViewSet
+from .views import RegistrationView, LoginView, ChangePasswordView, ProfileViewSet, UserViewSet
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
 router.register(r'profile', ProfileViewSet, basename='user-profiles')
+router.register(r'users', UserViewSet, basename='users')
 
 app_name = 'user'
 

@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from .utils import get_tokens_for_user
-from .serializers import RegistrationSerializer, PasswordChangeSerializer, ProfileSerializer
-from .models import Profile
+from .serializers import RegistrationSerializer, PasswordChangeSerializer, ProfileSerializer, UserSerializer
+from .models import Profile, User
 
 
 class RegistrationView(APIView):
@@ -55,6 +55,14 @@ class ChangePasswordView(APIView):
             return Response({'details': 'Password changed successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'details': 'New passwords does not match'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    http_method_names = ['get']
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
