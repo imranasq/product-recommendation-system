@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class WeatherCondition(models.Model):
+class WeatherType(models.Model):
     WEATHER_CHOICES = (
         ('Hot', 'Hot'),
         ('Normal', 'Normal'),
