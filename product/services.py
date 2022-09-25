@@ -1,4 +1,3 @@
-from itertools import product
 from core.services import BaseModelService
 from product.models import Product, ProductType
 
