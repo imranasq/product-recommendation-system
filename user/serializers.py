@@ -1,5 +1,8 @@
+from rest_framework import serializers, status
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from core.exceptions import CustomException
 from .models import User, Profile
-from rest_framework import serializers
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -26,6 +29,20 @@ class RegistrationSerializer(serializers.ModelSerializer):
             user.is_staff = True
         user.save()
         return user
+
+
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    def validate(self, attrs):
+        self.token = attrs['refresh']
+        return attrs
+
+    def save(self, **kwargs):
+        try:
+            RefreshToken(self.token).blacklist()
+        except Exception:
+            raise CustomException(detail="Invalid Refresh Token", status_code=status.HTTP_400_BAD_REQUEST)
 
 
 class PasswordChangeSerializer(serializers.Serializer):
