@@ -1,16 +1,17 @@
-from django.contrib.auth import authenticate, login, logout
-from rest_framework import status
+from django.contrib.auth import authenticate, login
+from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework.generics import GenericAPIView
 
 from .utils import get_tokens_for_user
 from .serializers import (
     RegistrationSerializer,
     PasswordChangeSerializer,
     ProfileSerializer,
-    UserSerializer
+    UserSerializer,
+    LogoutSerializer
 )
 from .models import Profile, User
 
@@ -42,10 +43,17 @@ class LoginView(APIView):
         return Response({'details': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-# class LogoutView(APIView):
-#     def post(self, request):
-#         logout(request)
-#         return Response({'msg': 'Successfully Logged out'}, status=status.HTTP_200_OK)
+class LogoutAPIView(GenericAPIView):
+    serializer_class = LogoutSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated, ]
