@@ -6,7 +6,12 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from .utils import get_tokens_for_user
-from .serializers import RegistrationSerializer, PasswordChangeSerializer, ProfileSerializer, UserSerializer
+from .serializers import (
+    RegistrationSerializer,
+    PasswordChangeSerializer,
+    ProfileSerializer,
+    UserSerializer
+)
 from .models import Profile, User
 
 
@@ -70,7 +75,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Profile.objects.filter(user=self.request.user)
 
-    def create(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         if serializer.validated_data['user'] == self.request.user:

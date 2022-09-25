@@ -53,7 +53,6 @@ class UserSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
-            'password',
             'user_type',
             'is_active',
         ]

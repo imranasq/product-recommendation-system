@@ -13,13 +13,14 @@ class ProductType(BaseModel):
 
 
 class Product(BaseModel):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=255)
     # image = models.ImageField(upload_to='images/product/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     price = models.FloatField(default=0.0)
     quantity = models.IntegerField(default=0)
-    category = models.ForeignKey(ProductType, related_name='product_category',
+    product_type = models.ForeignKey(ProductType, related_name='product_category',
                                      on_delete=models.SET_NULL, null=True, blank=True)
-    weather_condition = models.ForeignKey(WeatherType, related_name='products_weather',
+    weather_type = models.ForeignKey(WeatherType, related_name='products_weather',
                                      on_delete=models.SET_NULL, null=True, blank=True)
     vendor = models.ForeignKey(User, related_name='product_vendor', on_delete=models.CASCADE, null=True, blank=True)
 
