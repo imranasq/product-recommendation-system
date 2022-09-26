@@ -1,0 +1,62 @@
+[
+  {
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$JyaL8vr3GAsWGEISmU08tF$mxPYPGBRiXl2LGKbj1sFaX8nA18fpeAcAwr28JSDgec=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": null,
+      "user_type": "Admin",
+      "email": "admin@mail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_staff": true,
+      "date_joined": "2022-09-26T18:14:57.577Z",
+      "is_admin": true,
+      "is_active": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$JyaL8vr3GAsWGEISmU08tF$mxPYPGBRiXl2LGKbj1sFaX8nA18fpeAcAwr28JSDgec=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": null,
+      "user_type": "Vendor",
+      "email": "vendor@mail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_staff": false,
+      "date_joined": "2022-09-26T18:14:57.577Z",
+      "is_admin": false,
+      "is_active": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$JyaL8vr3GAsWGEISmU08tF$mxPYPGBRiXl2LGKbj1sFaX8nA18fpeAcAwr28JSDgec=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": null,
+      "user_type": "Customer",
+      "email": "customer@mail.com",
+      "first_name": null,
+      "last_name": null,
+      "is_staff": false,
+      "date_joined": "2022-09-26T18:14:57.577Z",
+      "is_admin": false,
+      "is_active": true,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
