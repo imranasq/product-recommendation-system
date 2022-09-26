@@ -13,9 +13,6 @@ class TestUserSerializer:
         [
             {
                 "email": 'test@mail.com',
-            },
-            {
-                "email": 'test@mail.com',
                 "user_type": "Admin",
             },
             {
