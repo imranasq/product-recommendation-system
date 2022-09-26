@@ -61,7 +61,7 @@ Run the project. It's better if the Port is 8000
 python manage.py runserver 8000
 ```
 ## Now You are good to go!
-You can log in with(If you already run the fixture)
+You can log in with(If you already load the user fixture)
 ```sh
 Admin 
 email: admin@mail.com
