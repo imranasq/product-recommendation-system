@@ -12,7 +12,7 @@ class ProductTypeSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ["id", "title", "description", "price", "quantity", "product_type", "weather_type", "vendor",
+        fields = ["id", "title", "image", "description", "price", "quantity", "product_type", "weather_type", "vendor",
                   "is_active"]
         read_only_fields = ["is_active"]
 
