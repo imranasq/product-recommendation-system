@@ -1,8 +1,8 @@
 import pytest
 from config import settings
-
+from product.tests.factories import ProductTypeFactory, ProductFactory
 from user.tests.factories import UserFactory
-
+from weather.tests.factories import WeatherTypeFactory
 from rest_framework.test import APIClient
 
 
@@ -14,6 +14,21 @@ def enable_db_access(db):
 @pytest.fixture()
 def user():
     return UserFactory()
+
+
+@pytest.fixture()
+def product_type():
+    return ProductTypeFactory()
+
+
+@pytest.fixture()
+def product():
+    return ProductFactory()
+
+
+@pytest.fixture()
+def weather_type():
+    return WeatherTypeFactory()
 
 
 @pytest.fixture
