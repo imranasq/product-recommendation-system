@@ -48,6 +48,12 @@ ALLOWED_HOSTS=127.0.0.1
 DEBUG=True
 # Secret key should be atleast 32 characters long and consists of alphanumeric and special characters
 SECRET_KEY=****
+WEATHER_API_KEY=
+
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
+DATABASE_HOST=
 ```
 If you do any update on models run this command
 ```sh
