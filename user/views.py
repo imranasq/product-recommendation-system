@@ -11,16 +11,18 @@ from .serializers import (
     PasswordChangeSerializer,
     ProfileSerializer,
     UserSerializer,
-    LogoutSerializer
+    LogoutSerializer,
+    LoginSerializer
 )
 from .models import Profile, User
 
 
 class RegistrationView(APIView):
     permission_classes = [AllowAny]
+    serializer_class = RegistrationSerializer
 
     def post(self, request):
-        serializer = RegistrationSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -29,6 +31,7 @@ class RegistrationView(APIView):
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
+    serializer_class = LoginSerializer
 
     def post(self, request):
         if 'email' not in request.data or 'password' not in request.data:
@@ -52,14 +55,15 @@ class LogoutAPIView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'details': 'Logout successful.'}, status=status.HTTP_204_NO_CONTENT)
 
 
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated, ]
+    serializer_class = PasswordChangeSerializer
 
     def post(self, request):
-        serializer = PasswordChangeSerializer(context={'request': request}, data=request.data)
+        serializer = self.serializer_class(context={'request': request}, data=request.data)
         serializer.is_valid(raise_exception=True)
         if serializer.validated_data['new_password'] == serializer.validated_data['new_password2']:
             request.user.set_password(serializer.validated_data['new_password'])
