@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_profile")
-    # profile_pic = models.ImageField(default='default.png', upload_to='images/profile/')
+    profile_pic = models.ImageField(default='default.png', upload_to='images/profile/')
     bio = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=30, null=True, blank=True)
