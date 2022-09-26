@@ -16,23 +16,22 @@ For creating virtual environment we can use packages like [Virtualenv](https://p
 ```sh
 cd product-recommendation-system
 virtualenv venv
-source venv/bin/activte
+source venv/bin/activate
 ```
 
 ### For Windows System
 ```sh
 cd product-recommendation-system
 python -m virtualenv venv
-source venv/Scripts/activte
+source venv/Scripts/activate
 ```
 Install all required packages.
 
 ```sh
 pip install -r requirements.txt
 ```
-Create a database in your `PostgreSQL` database server.
 
-Rename `.env.example` file as `.env` and update these values according to your database and environment credentials.
+Rename `.env.example` file as `.env` and update these values.
 ```env
 # Comma separated hosts or IPs, set * to allow all
 ALLOWED_HOSTS=127.0.0.1
