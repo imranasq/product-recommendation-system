@@ -3,15 +3,6 @@
 ### Python Installation
 * The project runs on [Python 3.10](https://www.python.org/downloads/).
 
-### Additional Downloads
-
-Apart from cloning this project, you also need the following -
-
-- [Postgres-14.0-1](https://www.postgresql.org/download/)
-
-**Make sure you get both the PostgreSQL server, and the Postgres Admin. The
-default installation comes with both.**
-
 ### Running the project
 Clone the repository.
 
@@ -89,3 +80,9 @@ python manage.py runserver
 2. If you log out with your credentials(access token) your refresh token will be black listed. You can not use that refresh token again. So generate another by simply logging in.
 3. The `user_type` field is pre-defined. You need to choose between `Admin, Vendor and Customer`. Other value won't work!
 4. The `weather` field is pre-defined. You need to choose between `Hot, Normal and Cold`. Other value won't work!
+
+### Unit Test
+Run unit tests
+```sh
+pytest
+```
