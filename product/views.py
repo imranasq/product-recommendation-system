@@ -48,7 +48,8 @@ class ProductViewSet(BaseModelViewSet):
             serializer.is_valid(raise_exception=True)
             validated_data = serializer.validated_data
             instance = self.get_object()
-            self.service_class.update(request, instance, validated_data)
+            response = self.service_class.update(request, instance, validated_data)
+            serializer = self.serializer_class(response)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response({'details': 'You do not have permission!'}, status=status.HTTP_401_UNAUTHORIZED)
