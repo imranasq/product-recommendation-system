@@ -45,6 +45,11 @@ class LogoutSerializer(serializers.Serializer):
             raise CustomException(detail="Invalid Refresh Token", status_code=status.HTTP_400_BAD_REQUEST)
 
 
+class LoginSerializer(serializers.Serializer):
+    email = serializers.CharField()
+    password = serializers.CharField()
+
+
 class PasswordChangeSerializer(serializers.Serializer):
     current_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
