@@ -36,8 +36,9 @@ Rename `.env.example` file as `.env` and update these values.
 # Comma separated hosts or IPs, set * to allow all
 ALLOWED_HOSTS=127.0.0.1
 DEBUG=True
-# Secret key should be atleast 32 characters long and consists of alphanumeric and special characters
+# Secret key should be atleast 32 characters long and consists of alphanumeric and special characters. You can use the given Secret key
 SECRET_KEY=****
+# You can use the given API key. 
 WEATHER_API_KEY=
 ```
 
