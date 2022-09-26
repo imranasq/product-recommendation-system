@@ -1,7 +1,7 @@
 import pytest
 from config import settings
 from product.tests.factories import ProductTypeFactory, ProductFactory
-from user.tests.factories import UserFactory
+from user.tests.factories import UserFactory, AdminUserFactory, VendorUserFactory
 from weather.tests.factories import WeatherTypeFactory
 from rest_framework.test import APIClient
 
@@ -48,7 +48,23 @@ def auth_client(client):
     return client
 
 
+def create_admin_user():
+    return AdminUserFactory.create()
+
+
+def create_vendor_user():
+    return VendorUserFactory.create()
+
+
 @pytest.fixture
-def unauthorized_client():
-    unauthorized_client = APIClient()
-    return unauthorized_client
+def admin_client(client):
+    user = create_admin_user()
+    client.force_authenticate(user)
+    return client
+
+
+@pytest.fixture
+def vendor_client(client):
+    user = create_vendor_user()
+    client.force_authenticate(user)
+    return client

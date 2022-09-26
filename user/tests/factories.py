@@ -27,3 +27,13 @@ class AdminUserFactory(DjangoModelFactory):
     is_staff = True
     is_active = True
 
+
+class VendorUserFactory(DjangoModelFactory):
+    class Meta:
+        model = 'user.User'
+
+    email = 'vendor@mail.com'
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+    password = factory.PostGenerationMethodCall('set_password', 'admin@123')
+    user_type = "Vendor"
