@@ -13,7 +13,8 @@ db.sqlite3
 db.sqlite3-journal
 media
 images
-images/*.jpg
+images/profile
+images/*.jpeg
 # Distribution / packaging
 .Python
 
