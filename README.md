@@ -30,6 +30,8 @@ Install all required packages.
 ```sh
 pip install -r requirements.txt
 ```
+### Database
+This project will set up on default Sqlite3. No need to worry about set up database by own.
 
 Rename `.env.example` file as `.env` and update these values.
 ```env
@@ -88,7 +90,7 @@ Your Newly created super-user credentials. You have to set the `user_type` as `A
 2. Swagger documentation is provided, so you can see the API documentation by simply going [swagger_doc](http://127.0.0.1:8000/swagger/) by your browser. 
 3. You can also download the API documentation by hitting [api_document_yaml](http://127.0.0.1:8000/schema/) endpoint.
 
-### Some Constrains 
+### Some Constraints 
 1. Since this project's Authentication is based on JSON Web Token, the lifetime of access token is set at 5 minutes. You need to generate access token using your refresh token(You can find it while log in).
 2. If you log out with your credentials(access token) your refresh token will be black listed. You can not use that refresh token again. So generate another by simply logging in.
 3. The `user_type` field is pre-defined. You need to choose between `Admin, Vendor and Customer` while register a user. Other value won't work!
